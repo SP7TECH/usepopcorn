@@ -1,3 +1,5 @@
+import { useState } from "react";
+
 const containerStyle = {
   display: "flex",
   alignItems: "center",
@@ -17,25 +19,33 @@ const textStyle = {
 const starStyle = {
   height: "48px",
   width: "48px",
+  display: "block",
+  cursor: "pointer",
 };
 
 const StarRating = ({ maxRating = 5 }) => {
+  const [rating, setRating] = useState(1);
+
   return (
     <div style={containerStyle}>
       <div style={starContainerStyle}>
         {Array.from({ length: maxRating }, (_, i) => (
-          <Star />
+          <Star
+            key={i + 1}
+            full={rating >= i + 1}
+            onRate={() => setRating(i + 1)}
+          />
         ))}
       </div>
-      <p style={textStyle}>{maxRating}</p>
+      <p style={textStyle}>{rating}</p>
     </div>
   );
 };
 
-function Star({ isFull }) {
+function Star({ onRate, full }) {
   return (
-    <span style={starStyle}>
-      {isFull ? (
+    <span style={starStyle} onClick={onRate}>
+      {full ? (
         <svg
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 20 20"
