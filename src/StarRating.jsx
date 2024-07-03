@@ -24,7 +24,8 @@ const starStyle = {
 };
 
 const StarRating = ({ maxRating = 5 }) => {
-  const [rating, setRating] = useState(1);
+  const [rating, setRating] = useState(0);
+  const [tempRating, setTempRating] = useState(0);
 
   return (
     <div style={containerStyle}>
@@ -32,19 +33,26 @@ const StarRating = ({ maxRating = 5 }) => {
         {Array.from({ length: maxRating }, (_, i) => (
           <Star
             key={i + 1}
-            full={rating >= i + 1}
+            full={tempRating ? tempRating >= i + 1 : rating >= i + 1}
             onRate={() => setRating(i + 1)}
+            onMouseIn={() => setTempRating(i + 1)}
+            onMouseOut={() => setTempRating(0)}
           />
         ))}
       </div>
-      <p style={textStyle}>{rating}</p>
+      <p style={textStyle}>{tempRating || rating || ""}</p>
     </div>
   );
 };
 
-function Star({ onRate, full }) {
+function Star({ onRate, full, onMouseIn, onMouseOut }) {
   return (
-    <span style={starStyle} onClick={onRate}>
+    <span
+      style={starStyle}
+      onClick={onRate}
+      onMouseEnter={onMouseIn}
+      onMouseLeave={onMouseOut}
+    >
       {full ? (
         <svg
           xmlns="http://www.w3.org/2000/svg"
