@@ -98,8 +98,11 @@ export default function App() {
 
           const data = await res.json();
           setMovies(data.Search);
+          setError("");
         } catch (error) {
-          setError(error.message);
+          if (error.name !== "AbortError") {
+            setError(error.message);
+          }
         } finally {
           setIsLoading(false);
         }
@@ -194,7 +197,7 @@ function Search({ query, setQuery }) {
 function NumResults({ movies }) {
   return (
     <p className="num-results">
-      Found <strong>{movies.length}</strong> results
+      Found <strong>{movies?.length}</strong> results
     </p>
   );
 }
@@ -309,6 +312,11 @@ function MovieDetails({ selectedId, onCloseMovie, onAddMovie, watchedMovies }) {
     function () {
       if (!title) return;
       document.title = `Movie | ${title}`;
+
+      return function () {
+        document.title = "usePopcorn";
+        console.log(`Cleaning up the title for movie -> ${title}`);
+      };
     },
     [title]
   );
