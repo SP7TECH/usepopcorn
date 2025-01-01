@@ -248,6 +248,7 @@ function MovieDetails({ selectedId, onCloseMovie, onAddMovie, watchedMovies }) {
 
   /* eslint-disable */
   // if (imdbRating > 8) [isTop, setIsTop] = useState(true);
+  // if (imdbRating > 8) return <p>This is a paragraph</p>;
 
   function handleAdd() {
     const newWatchedMovie = {
