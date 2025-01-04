@@ -35,7 +35,8 @@ export default function App() {
 
   const [movies, setMovies] = useState(tempMovieData);
   const [watched, setWatched] = useState(function () {
-    const storedValue = localStorage.getItem("watched");
+    let storedValue = localStorage.getItem("watched");
+    if (!storedValue) storedValue = "[]";
     return JSON.parse(storedValue);
   });
   const [isLoading, setIsLoading] = useState(false);
@@ -330,7 +331,6 @@ function MovieDetails({ selectedId, onCloseMovie, onAddMovie, watchedMovies }) {
 
       return function () {
         document.title = "usePopcorn";
-        console.log(`Cleaning up the title for movie -> ${title}`);
       };
     },
     [title]
