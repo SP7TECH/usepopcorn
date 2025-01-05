@@ -1,4 +1,4 @@
-# Fond of Movies?
+# Movie Rating App
 
 A simple and focused project designed to explore the most commonly used React Hooks. This web app lets you rate movies you've watched and search for new ones, providing details about each film.
 
