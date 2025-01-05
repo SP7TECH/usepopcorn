@@ -4,7 +4,7 @@ A simple project aimed at exploration of most used React Hooks. It is a simple w
 
 ## App Screenshot
 
-![App Screenshot]("./public/usePopcorn.png")
+![App Screenshot](./public/usePopcorn.png)
 
 ### `npm start`
 
@@ -16,4 +16,4 @@ You may also see any lint errors in the console.
 
 ### Deployment
 
-[Access the deployed Web App here!]("https://google.com")
+[Access the deployed Web App here!](https://google.com)
